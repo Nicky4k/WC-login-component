@@ -6,7 +6,12 @@ import TermsConditions from "../UI/TermsConditions.tsx";
 import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { isError, isLoading, isLoggedIn } from "../redux-store/loginSlice";
+import {
+  isError,
+  isLoading,
+  isLoggedIn,
+  setUsers,
+} from "../redux-store/loginSlice";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -64,7 +69,8 @@ const SignIn = () => {
       });
 
       if (!users) throw new Error("Request failed");
-      console.log(users.map((user) => user.name));
+      const wcUsers = users.map((user) => user.name);
+      dispatch(setUsers(wcUsers));
 
       setFormData({
         email: "",

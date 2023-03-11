@@ -5,12 +5,12 @@ import WissenSvg from "./assets/WissenSvg.tsx";
 import SignIn from "./component/pages/SignIn";
 import Toast from "./component/UI/Toast.tsx";
 import { useSelector } from "react-redux";
+import Users from "./component/pages/Users.tsx";
 
 function App() {
   const {
-    loginStore: { isLoading },
+    loginStore: { isLoading, isLoggedIn },
   } = useSelector((state) => state);
-  console.log(isLoading);
 
   const portalElement = document.getElementById("overlays");
 
@@ -18,7 +18,8 @@ function App() {
     <Fragment>
       {isLoading && ReactDOM.createPortal(<Toast />, portalElement)}
       <WissenSvg />
-      <SignIn />
+      {!isLoggedIn && <SignIn />}
+      {isLoggedIn && <Users />}
     </Fragment>
   );
 }
