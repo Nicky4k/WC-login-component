@@ -4,6 +4,8 @@ import InputLabel from "./component/UI/InputLabel.tsx";
 import StylesFont from "./component/UI/StylesFont.tsx";
 import PlainFont from "./component/UI/PlainFont.tsx";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [data, setData] = useState({
@@ -30,8 +32,8 @@ function App() {
   }, [data]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setData({ ...data, [name]: type === "checkbox" ? checked : value });
+    const { name, value, type } = e.target;
+    setData({ ...data, [name]: type === "checkbox" ? true : value });
   };
 
   return (
@@ -62,12 +64,29 @@ function App() {
               onChange={handleChange}
             />
             <div className="flex py-7 items-start">
-              <input
-                className="border-slate-400	 w-12 h-5 accent-blue-800"
-                type="checkbox"
-                name="checkbox"
-                onChange={handleChange}
-              />
+              <label htmlFor="checkbox" className="cursor-pointer relative ">
+                <input
+                  className={`relative w-5 h-5 ${
+                    data.checkbox && `bg-blue-700`
+                  } appearance-none rounded ${
+                    !data.checkbox && `border`
+                  } border ${
+                    !data.checkbox && `border-zinc-400`
+                  } cursor-pointer`}
+                  type="checkbox"
+                  name="checkbox"
+                  onChange={handleChange}
+                />
+                {data.checkbox && (
+                  <FontAwesomeIcon
+                    onClick={() => {
+                      setData({ ...data, checkbox: false });
+                    }}
+                    icon={faCheck}
+                    className="text-white absolute inset-0.5 text-base"
+                  />
+                )}
+              </label>
               <div className="text-sm pl-2 relative bottom-1">
                 <PlainFont text="By creating or logging into an account, you " />
                 <PlainFont text="are agreeing with our" />
@@ -78,6 +97,7 @@ function App() {
             </div>
           </div>
           <button
+            disabled={!formIsValid}
             className={`w-full bg-indigo-100 h-12 rounded-md ${
               formIsValid && `bg-indigo-700`
             } 
