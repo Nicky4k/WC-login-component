@@ -23,7 +23,7 @@ const useContent = (isLoading, showToast, isError) => {
       icon: (
         <FontAwesomeIcon
           icon={faExclamationTriangle}
-          className="text-red-500  text-xl"
+          className="text-red-500  text-xl animate-ping"
         />
       ),
     };
@@ -32,7 +32,7 @@ const useContent = (isLoading, showToast, isError) => {
     content = {
       message: "Login successful",
       icon: (
-        <FontAwesomeIcon icon={faCheck} className="text-green-500 text-5xl" />
+        <FontAwesomeIcon icon={faCheck} className="text-green-500 text-5xl " />
       ),
     };
 

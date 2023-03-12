@@ -1,4 +1,7 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
 import { useSelector } from "react-redux";
 
 const Users = () => {
@@ -8,7 +11,10 @@ const Users = () => {
 
   return (
     <section className="flex-col mt-8">
-      <p>Welcome user</p>
+      <article className="flex gap-2 items-center">
+        <FontAwesomeIcon icon={faUser} className="w-5 h-5" />
+        <p>Welcome user</p>
+      </article>
       <table className="mt-8">
         <tbody>
           <tr className="border w-80 h-8">

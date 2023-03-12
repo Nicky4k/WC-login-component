@@ -23,6 +23,7 @@ const SignIn = () => {
     checkbox: false,
   });
   const [formIsValid, setFormIsValid] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (
@@ -56,6 +57,10 @@ const SignIn = () => {
     dispatch(isLoading(true));
     dispatch(isError(false));
     postFormData();
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((showPassword) => !showPassword);
   };
 
   async function postFormData() {
@@ -94,7 +99,7 @@ const SignIn = () => {
       dispatch(isError(true));
       setTimeout(() => {
         dispatch(isError(false));
-      }, 2000);
+      }, 2500);
     }
   }
   return (
@@ -106,7 +111,9 @@ const SignIn = () => {
           <div className="flex flex-col py-2">
             <InputLabel label="Email" />
             <input
-              className="border-zinc-300 border rounded h-10 px-4 outline-none text-blue-700 text-base"
+              className={`${
+                formIsValid ? `border-zinc-900` : `border-b-zinc-300`
+              } border rounded h-10 px-4 outline-none text-blue-700 text-base`}
               value={formData.email}
               type="email"
               name="email"
@@ -117,15 +124,27 @@ const SignIn = () => {
           </div>
           <div className="flex flex-col py-2">
             <InputLabel label="Password" />
-            <input
-              className="border-zinc-300 border rounded h-10 px-4 outline-none text-blue-700 text-base"
-              value={formData.password}
-              type="password"
-              name="password"
-              id="password"
-              onChange={handleChange}
-            />
-            <div className="flex py-7 items-start">
+            <div className="relative w-80">
+              <input
+                className={`${
+                  formIsValid ? `border-zinc-900` : `border-b-zinc-300`
+                } border rounded w-80 h-10 px-4 outline-none text-blue-700 absolute text-base`}
+                value={formData.password}
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                onChange={handleChange}
+              />
+              <i
+                id="togglePassword"
+                onClick={toggleShowPassword}
+                className={`absolute far fa-eye right-2 top-3 ${
+                  showPassword ? `text-zinc-900` : `text-zinc-400`
+                } cursor-pointer`}
+              ></i>
+            </div>
+
+            <div className="flex pt-20 pb-7 items-start">
               <label htmlFor="checkbox" className="cursor-pointer relative ">
                 <input
                   className={`relative w-5 h-5 ${
