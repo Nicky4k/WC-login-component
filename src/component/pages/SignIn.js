@@ -12,7 +12,7 @@ import {
   toggleIsLoggedIn,
   setShowToast,
   setUsers,
-} from "../redux-store/loginSlice";
+} from "../../redux-store/loginSlice";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -120,6 +120,7 @@ const SignIn = () => {
               id="email"
               autoFocus
               onChange={handleChange}
+              data-testid="emailInput"
             />
           </div>
           <div className="flex flex-col py-2">
@@ -134,6 +135,7 @@ const SignIn = () => {
                 name="password"
                 id="password"
                 onChange={handleChange}
+                data-testid="passwordInput"
               />
               <i
                 id="togglePassword"
@@ -152,6 +154,7 @@ const SignIn = () => {
                   }  appearance-none rounded cursor-pointer`}
                   type="checkbox"
                   name="checkbox"
+                  data-testid="checkBoxInput"
                   onChange={handleChange}
                 />
                 {formData.checkbox && (

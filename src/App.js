@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import "./App.css";
 import WissenSvg from "./assets/WissenSvg.tsx";
 import SignIn from "./component/pages/SignIn";
