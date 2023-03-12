@@ -5,7 +5,7 @@ import WissenSvg from "./assets/WissenSvg.tsx";
 import SignIn from "./component/pages/SignIn";
 import Toast from "./component/UI/Toast.tsx";
 import { useSelector } from "react-redux";
-import Users from "./component/pages/Users.tsx";
+import Users from "./component/pages/Users";
 
 function App() {
   const {

@@ -69,8 +69,7 @@ const SignIn = () => {
       });
 
       if (!users) throw new Error("Request failed");
-      const wcUsers = users.map((user) => user.name);
-      dispatch(setUsers(wcUsers));
+      dispatch(setUsers(users));
 
       setFormData({
         email: "",
