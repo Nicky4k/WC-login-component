@@ -10,6 +10,7 @@ import {
   isError,
   isLoading,
   isLoggedIn,
+  setShowToast,
   setUsers,
 } from "../redux-store/loginSlice";
 
@@ -36,6 +37,14 @@ const SignIn = () => {
       setFormIsValid(false);
     }
   }, [formData]);
+
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        dispatch(setShowToast(false));
+      }, 2500);
+    };
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -78,9 +87,14 @@ const SignIn = () => {
       });
       dispatch(isLoading(false));
       dispatch(isLoggedIn(true));
+      dispatch(setShowToast(true));
     } catch (error) {
       console.log(error.message);
+      dispatch(isLoading(false));
       dispatch(isError(true));
+      setTimeout(() => {
+        dispatch(isError(false));
+      }, 2000);
     }
   }
   return (

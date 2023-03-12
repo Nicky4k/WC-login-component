@@ -5,7 +5,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   isError: false,
-  toastTimer: "",
+  showToast: false,
 };
 
 const loginSlice = createSlice({
@@ -24,9 +24,13 @@ const loginSlice = createSlice({
     setUsers(state, actions) {
       state.users = actions.payload;
     },
+    setShowToast(state, action) {
+      state.showToast = action.payload;
+    },
   },
 });
 
-export const { isError, isLoading, isLoggedIn, setUsers } = loginSlice.actions;
+export const { isError, isLoading, isLoggedIn, setUsers, setShowToast } =
+  loginSlice.actions;
 
 export default loginSlice.reducer;
