@@ -7,9 +7,9 @@ import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
-  isError,
-  isLoading,
-  isLoggedIn,
+  setIsError,
+  setIsLoading,
+  toggleIsLoggedIn,
   setShowToast,
   setUsers,
 } from "../redux-store/loginSlice";
@@ -54,8 +54,8 @@ const SignIn = () => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(isLoading(true));
-    dispatch(isError(false));
+    dispatch(setIsLoading(true));
+    dispatch(setIsError(false));
     postFormData();
   };
 
@@ -90,15 +90,15 @@ const SignIn = () => {
         password: "",
         checkbox: false,
       });
-      dispatch(isLoading(false));
-      dispatch(isLoggedIn(true));
+      dispatch(setIsLoading(false));
+      dispatch(toggleIsLoggedIn(true));
       dispatch(setShowToast(true));
     } catch (error) {
       console.log(error.message);
-      dispatch(isLoading(false));
-      dispatch(isError(true));
+      dispatch(setIsLoading(false));
+      dispatch(setIsError(true));
       setTimeout(() => {
-        dispatch(isError(false));
+        dispatch(setIsError(false));
       }, 2500);
     }
   }
@@ -112,7 +112,7 @@ const SignIn = () => {
             <InputLabel label="Email" />
             <input
               className={`${
-                formIsValid ? `border-zinc-900` : `border-b-zinc-300`
+                formIsValid ? `border-zinc-700` : `border-b-zinc-300`
               } border rounded h-10 px-4 outline-none text-blue-700 text-base`}
               value={formData.email}
               type="email"
@@ -127,7 +127,7 @@ const SignIn = () => {
             <div className="relative w-80">
               <input
                 className={`${
-                  formIsValid ? `border-zinc-900` : `border-b-zinc-300`
+                  formIsValid ? `border-zinc-700` : `border-b-zinc-300`
                 } border rounded w-80 h-10 px-4 outline-none text-blue-700 absolute text-base`}
                 value={formData.password}
                 type={showPassword ? "text" : "password"}
@@ -139,7 +139,7 @@ const SignIn = () => {
                 id="togglePassword"
                 onClick={toggleShowPassword}
                 className={`absolute far fa-eye right-2 top-3 ${
-                  showPassword ? `text-zinc-900` : `text-zinc-400`
+                  showPassword ? `text-zinc-700` : `text-zinc-400`
                 } cursor-pointer`}
               ></i>
             </div>

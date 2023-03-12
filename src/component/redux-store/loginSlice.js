@@ -12,13 +12,13 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    isLoading(state, action) {
+    setIsLoading(state, action) {
       state.isLoading = action.payload;
     },
-    isError(state, action) {
+    setIsError(state, action) {
       state.isError = action.payload;
     },
-    isLoggedIn(state, action) {
+    toggleIsLoggedIn(state, action) {
       state.isLoggedIn = action.payload;
     },
     setUsers(state, actions) {
@@ -30,7 +30,12 @@ const loginSlice = createSlice({
   },
 });
 
-export const { isError, isLoading, isLoggedIn, setUsers, setShowToast } =
-  loginSlice.actions;
+export const {
+  setIsError,
+  setIsLoading,
+  toggleIsLoggedIn,
+  setUsers,
+  setShowToast,
+} = loginSlice.actions;
 
 export default loginSlice.reducer;
