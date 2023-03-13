@@ -25,8 +25,8 @@ function App() {
       {(isLoading || showToast || isError) &&
         ReactDOM.createPortal(<Toast content={content} />, portalElement)}
       <WissenSvg />
-      {!isLoggedIn && <SignIn data-testid="signInPage" />}
-      {isLoggedIn && <Users data-testid="usersPage" />}
+      {!isLoggedIn && <SignIn />}
+      {isLoggedIn && <Users />}
     </Fragment>
   );
 }
